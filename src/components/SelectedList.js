@@ -3,14 +3,14 @@ import React, { PropTypes } from 'react'
 import './SelectedList.css'
 
 function renderText({id, text}) {
-  return null;
+  return <li key={id}>{text}</li>;
 }
 
 function filterText(searchValue) {
     return ({text}) => true
 }
 
-function SelectedList({ searchValue, list }) {
+var SelectedList = ({ searchValue, list }) => {
   return (
     <ul>
       {list
