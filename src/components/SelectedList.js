@@ -7,7 +7,9 @@ function renderText({id, text}) {
 }
 
 function filterText(searchValue) {
-    return ({text}) => true
+  return function (e) {
+    return e.text.indexOf(searchValue) === 0;
+  }
 }
 
 var SelectedList = ({ searchValue, list }) => {

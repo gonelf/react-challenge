@@ -19,7 +19,6 @@ class App extends Component {
 
   /* auto biding */
   onChange = (e) => {
-    console.log(e.target.value);
     const searchValue = e.target.value
     this.setState({ searchValue })
   }
@@ -44,5 +43,6 @@ class App extends Component {
     );
   }
 }
+
 
 export default App;
