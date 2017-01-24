@@ -1,9 +1,10 @@
 import React, { PropTypes } from 'react'
+import View from 'react-flexbox'
 
 import './SelectedList.css'
 
 function renderText({id, text}) {
-  return <li key={id}>{text}</li>;
+  return <View row key={id}><div className='item'>{text}</div></View>;
 }
 
 function filterText(searchValue) {
@@ -14,11 +15,11 @@ function filterText(searchValue) {
 
 var SelectedList = ({ searchValue, list }) => {
   return (
-    <ul>
-      {list
-        .filter(filterText(searchValue))
-        .map(renderText)}
-    </ul>
+    <View row auto>
+          {list
+            .filter(filterText(searchValue))
+            .map(renderText)}
+    </View>
   )
 }
 

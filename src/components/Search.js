@@ -1,9 +1,16 @@
 import React, { PropTypes } from 'react'
+import View from 'react-flexbox'
 
 import './Search.css'
 
 var Search = ({onChange}) => {
-  return <div><input onChange={onChange}/></div>
+  return (
+    <View column auto>
+      <div className='inputbox'>
+        <input onChange={onChange}/>
+      </div>
+    </View>
+  )
 }
 
 Search.propTypes = {
