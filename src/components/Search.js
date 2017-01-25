@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import View from 'react-flexbox'
+import { Flex, Box } from 'reflexbox'
 import { connect } from 'react-redux';
 import { setSearchTerm } from '../actions/index';
 
@@ -13,11 +13,11 @@ class Search extends Component {
 
   render() {
     return (
-      <View column auto>
-        <div className='inputbox'>
+      <Flex wrap>
+        <Box col={12} className='inputbox'>
           <input onChange={this.onInputChange.bind(this)}/>
-        </div>
-      </View>
+        </Box>
+      </Flex>
     )
   }
 }

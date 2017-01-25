@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import View from 'react-flexbox'
+import { Flex, Box } from 'reflexbox'
 import { connect } from 'react-redux'
 import { fetchCities } from '../actions/index'
 
@@ -7,11 +7,9 @@ import './SelectedList.css'
 
 function renderText({alpha2Code, name}) {
   return (
-    <View row key={alpha2Code}>
-      <View>
+    <Box col={12} sm={6} lg={3} key={alpha2Code}>
         <div className='item'>{name}</div>
-      </View>
-    </View>
+    </Box>
   );
 }
 
@@ -32,15 +30,15 @@ class SelectedList extends Component {
     var searchValue = this.props.term;
 
     if (list.length === 0) {
-      return <View row><div className='item'>Fetching data</div></View>
+      return <Flex wrap><Box className='item'>Fetching data</Box></Flex>
     }
     else {
       return (
-        <View column auto>
+        <Flex wrap>
           {list
             .filter(filterText(searchValue))
             .map(renderText)}
-        </View>
+        </Flex>
       )
     }
   }
