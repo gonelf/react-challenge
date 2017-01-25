@@ -1,21 +1,25 @@
-import React, { PropTypes } from 'react'
+import React, { Component } from 'react'
 import View from 'react-flexbox'
+import { connect } from 'react-redux';
+import { setSearchTerm } from '../actions/index';
 
 import './Search.css'
 
-var Search = ({onChange}) => {
-  return (
-    <View column auto>
-      <div className='inputbox'>
-        <input onChange={onChange}/>
-      </div>
-    </View>
-  )
+class Search extends Component {
+
+  onInputChange(e) {
+    this.props.setSearchTerm(e.target.value)
+  }
+
+  render() {
+    return (
+      <View column auto>
+        <div className='inputbox'>
+          <input onChange={this.onInputChange.bind(this)}/>
+        </div>
+      </View>
+    )
+  }
 }
 
-Search.propTypes = {
-   searchValue: PropTypes.string.isRequired,
-   onChange: PropTypes.func.isRequired,
-}
-
-export default Search
+export default connect(null, {setSearchTerm})(Search)
