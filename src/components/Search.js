@@ -1,25 +1,22 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Flex, Box } from 'reflexbox'
 import { connect } from 'react-redux';
 import { setSearchTerm } from '../actions/index';
 
 import './Search.css'
 
-class Search extends Component {
-
-  onInputChange(e) {
-    this.props.setSearchTerm(e.target.value)
+const Search = ({setSearchTerm}) => {
+  const onInputChange = (e) => {
+    setSearchTerm(e.target.value)
   }
 
-  render() {
-    return (
-      <Flex wrap>
-        <Box col={12} className='inputbox'>
-          <input onChange={this.onInputChange.bind(this)}/>
-        </Box>
-      </Flex>
-    )
-  }
+  return (
+    <Flex wrap>
+      <Box col={12} className='inputbox'>
+        <input onChange={onInputChange}/>
+      </Box>
+    </Flex>
+  )
 }
 
 export default connect(null, {setSearchTerm})(Search)

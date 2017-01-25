@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Flex, Box } from 'reflexbox'
 import { connect } from 'react-redux'
 import { fetchCities } from '../actions/index'
@@ -19,28 +19,22 @@ function filterText(searchValue) {
   }
 }
 
-class SelectedList extends Component {
+const SelectedList = (props) => {
+  var list = props.list;
+  var searchValue = props.term;
 
-  componentWillMount() {
-    this.props.fetchCities();
+  if (list.length === 0) {
+    props.fetchCities();
+    return <Flex wrap><Box className='item'>Fetching data</Box></Flex>
   }
-
-  render () {
-    var list = this.props.list;
-    var searchValue = this.props.term;
-
-    if (list.length === 0) {
-      return <Flex wrap><Box className='item'>Fetching data</Box></Flex>
-    }
-    else {
-      return (
-        <Flex wrap>
-          {list
-            .filter(filterText(searchValue))
-            .map(renderText)}
-        </Flex>
-      )
-    }
+  else {
+    return (
+      <Flex wrap>
+        {list
+          .filter(filterText(searchValue))
+          .map(renderText)}
+      </Flex>
+    )
   }
 }
 
