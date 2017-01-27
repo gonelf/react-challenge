@@ -1,8 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import { renderComponent, expect } from './test_helper'
 import App from './App';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-});
+describe('App', () => {
+
+  let component
+
+  beforeEach(() => {
+    component = renderComponent(App)
+  })
+
+  it('shows search bar', () => {
+    expect(component.find('.Search')).to.exist
+  });
+
+  it('shows a selected list', () => {
+    expect(component.find('.SelectedList')).to.exist
+  })
+})

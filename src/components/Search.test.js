@@ -1,32 +1,26 @@
-import React from 'react'
-import { shallow } from 'enzyme'
-import expect, { createSpy } from 'expect'
+import { renderComponent, expect } from '../test_helper'
 
 import Search from './Search'
 
-/* Testing structure */
-it('should render an input with value and onChange handler', () => {
-  const searchValue = 'css'
-  const spy = createSpy()
-  const wrapper = shallow(<Search searchValue={searchValue} onChange={spy} />)
+describe('Search', () => {
+  let component
+  beforeEach(() => {
+    component = renderComponent(Search)
+  })
 
-  expect(wrapper.type()).toBe('input')
+  it('has correct class', () => {
+    expect(component).to.have.class('Search')
+  })
 
-  const input = wrapper.props()
+  it('has input', () => {
+    expect(component.find('input')).to.exist
 
-  expect(input.className).toBe('Search')
-  expect(input.value).toBe(searchValue)
-  expect(input.onChange).toBe(spy)
-})
+  })
 
-/* Testing behaviour */
-it('should call onChange when the input was changed', () => {
-  const searchValue = 'css'
-  const spy = createSpy()
-  const wrapper = shallow(<Search searchValue={searchValue} onChange={spy} />)
-
-  const event = {event: { target: 'react' }}
-  wrapper.simulate('change', event)
-
-  expect(spy).toHaveBeenCalledWith(event)
+  describe('entering some text', () => {
+    it('changes', () => {
+      component.find('input').simulate('change', 'portugal')
+      expect(component.find('input')).to.have.value('portugal')
+    })
+  })
 })

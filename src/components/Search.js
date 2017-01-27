@@ -11,7 +11,7 @@ const Search = ({setSearchTerm}) => {
   }
 
   return (
-    <Flex wrap>
+    <Flex wrap className='Search'>
       <Box col={12} className='inputbox'>
         <input onChange={onInputChange}/>
       </Box>

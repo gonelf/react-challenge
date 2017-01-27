@@ -7,7 +7,7 @@ import './SelectedList.css'
 
 function renderText({alpha2Code, name}) {
   return (
-    <Box col={12} sm={6} lg={3} key={alpha2Code}>
+    <Box className='box' col={12} sm={6} lg={3} key={alpha2Code}>
         <div className='item'>{name}</div>
     </Box>
   );
@@ -20,16 +20,20 @@ function filterText(searchValue) {
 }
 
 const SelectedList = (props) => {
-  var list = props.list;
-  var searchValue = props.term;
-
-  if (list.length === 0) {
+  if (!props.list || props.list.length === 0) {
     props.fetchCities();
-    return <Flex wrap><Box className='item'>Fetching data</Box></Flex>
+    return (
+      <Flex wrap className='SelectedList'>
+        <Box className='item'>Fetching data</Box>
+      </Flex>
+    )
   }
   else {
+    var list = props.list;
+    var searchValue = props.term;
+
     return (
-      <Flex wrap>
+      <Flex wrap className='SelectedList'>
         {list
           .filter(filterText(searchValue))
           .map(renderText)}
@@ -45,4 +49,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect (mapStateToProps, { fetchCities })(SelectedList)
+export default connect (mapStateToProps, {fetchCities})(SelectedList)
