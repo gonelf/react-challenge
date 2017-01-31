@@ -7,7 +7,8 @@ import './Search.css'
 
 const Search = ({setSearchTerm}) => {
   const onInputChange = (e) => {
-    setSearchTerm(e.target.value)
+    //setSearchTerm(e.target.value)
+    setSearchTerm(e.target.value);
   }
 
   return (
@@ -19,4 +20,4 @@ const Search = ({setSearchTerm}) => {
   )
 }
 
-export default connect(null, {setSearchTerm})(Search)
+export default Search

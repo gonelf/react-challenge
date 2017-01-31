@@ -8,10 +8,12 @@ import App from './App';
 import './index.css';
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore)
-
+/*
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <App />
   </Provider>,
   document.getElementById('root')
 );
+*/
+ReactDOM.render(<App />, document.getElementById('root'));

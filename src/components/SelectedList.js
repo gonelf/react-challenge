@@ -20,6 +20,32 @@ function filterText(searchValue) {
 }
 
 const SelectedList = (props) => {
+  const list = props.list
+  if (list.pending){
+    return (
+      <Flex wrap className='SelectedList'>
+        <Box className='item'>Fetching data</Box>
+      </Flex>
+    )
+  }
+  else if (list.rejected){
+    return (
+      <Flex wrap className='SelectedList'>
+        <Box className='item'>{list.reason.message}</Box>
+      </Flex>
+    )
+  }
+  else if(list.fulfilled){
+    return (
+      <Flex wrap className='SelectedList'>
+        {list.value
+          .filter(filterText(props.searchValue))
+          .map(renderText)}
+        </Flex>
+      )
+  }
+
+  /*
   if (!props.list || props.list.length === 0) {
     props.fetchCities();
     return (
@@ -40,6 +66,7 @@ const SelectedList = (props) => {
       </Flex>
     )
   }
+  */
 }
 
 function mapStateToProps(state) {
@@ -49,4 +76,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect (mapStateToProps, {fetchCities})(SelectedList)
+export default SelectedList
