@@ -1,7 +1,5 @@
 import React from 'react'
 import { Flex, Box } from 'reflexbox'
-import { connect } from 'react-redux'
-import { fetchCities } from '../actions/index'
 
 import './SelectedList.css'
 
@@ -43,36 +41,6 @@ const SelectedList = (props) => {
           .map(renderText)}
         </Flex>
       )
-  }
-
-  /*
-  if (!props.list || props.list.length === 0) {
-    props.fetchCities();
-    return (
-      <Flex wrap className='SelectedList'>
-        <Box className='item'>Fetching data</Box>
-      </Flex>
-    )
-  }
-  else {
-    var list = props.list;
-    var searchValue = props.term;
-
-    return (
-      <Flex wrap className='SelectedList'>
-        {list
-          .filter(filterText(searchValue))
-          .map(renderText)}
-      </Flex>
-    )
-  }
-  */
-}
-
-function mapStateToProps(state) {
-  return {
-    term: state.data.term,
-    list: state.data.cities
   }
 }
 
